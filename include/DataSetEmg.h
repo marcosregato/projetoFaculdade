@@ -1,0 +1,13 @@
+#pragma once
+#ifndef __DataSetEmg__H__
+#define __DataSetEmg__H__
+#include <string>
+
+class DataSetEmg{
+
+void leitorCSV(std::string pathFile);
+bool escreverCSV(std::string pathFile);
+
+};
+
+#endif // __DataSetEmg__H__
