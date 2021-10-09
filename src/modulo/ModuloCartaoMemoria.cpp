@@ -14,7 +14,7 @@ bool createFolder(String folder){
             printf("Pasta ja existe");
             return true;
         }else{
-            SD.mkdir("dados_%e_%m_%C");
+            SD.mkdir((char *)"dados");//"dados_%e_%m_%c");
             printf("Pasta foi criada");
             return true;
         }

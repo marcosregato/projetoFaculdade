@@ -1,9 +1,14 @@
+#include <Arduino.h>
 #include <Servo.h>
+#include "Tendao.h"
 
+Servo servo_9;
+int pos;
 // construtor
-Tendao::Tendao(int *pos, Servo *servo_9){
-    int pos = &pos;
-    Servo &servo_9;
+Tendao::Tendao(int pos, Servo servo_9){
+    this->pos = pos;
+    this->servo_9 = servo_9;
+
 }
 
 /*void setup(){
@@ -25,5 +30,6 @@ void movimentoServo(){
     servo_9.write(pos);
     // wait 15 ms for servo to reach the position
     delay(15); // Aguarde 15 milissegundos (s) 
+    
   }
 }
