@@ -1,6 +1,5 @@
 #include <Arduino.h>
 #include <SD.h>
-//#include <sys/stat.h>
 #include <time.h>
 #include "ModuloCartaoMemoria.h"
 
