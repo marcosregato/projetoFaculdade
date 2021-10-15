@@ -1,14 +1,16 @@
 #pragma once
-#ifndef __ModuloCartaoMemoria__H__
-#define __ModuloCartaoMemoria__H___
+#ifndef MODULOCARTAOMEMORIA_H
+#define MODULOCARTAOMEMORIA_H
 #include <Arduino.h>
 
 class CartaoMemoriaArduino{
 
+    private:
+        int baundRate;
     public:
-        void connetionCardMemory();
+        connetionCardMemory(int baundRate);
         bool createFolder(String folder);
-        void writeCardMemory(String filePath);
+        inline writeCardMemory(String filePath);
 
 };
 #endif

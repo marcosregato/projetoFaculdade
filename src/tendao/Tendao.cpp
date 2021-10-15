@@ -5,18 +5,16 @@
 Servo servo_9;
 int pos;
 // construtor
-Tendao::Tendao(int pos, Servo servo_9){
-    this->pos = pos;
+Tendao::Tendao(Servo servo_9){
     this->servo_9 = servo_9;
-
 }
 
 /*void setup(){
   servo_9.attach(9, 500, 2500);
 }*/
 
-void movimentoServo(){
-    servo_9.attach(9, 500, 2500);
+void movimentoServo(int post){
+    servo_9.attach(9);
     // varre o servo de 0 a 180 graus em etapas
     // de 1 grau 
   for (pos = 0; pos <= 180; pos += 1) {
@@ -33,3 +31,20 @@ void movimentoServo(){
     
   }
 }
+
+/*
+Servo myservo;                              
+
+void setup() {
+  myservo.attach(9);
+}
+
+void loop() {
+  myservo.write(170);
+  delay(500);
+  myservo.write(0);
+  delay(500);
+}
+
+
+*/

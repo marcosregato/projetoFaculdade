@@ -1,3 +1,4 @@
+#pragma once
 #ifndef TENDAO_H
 #define TENDAO_H
 #include <Arduino.h>
@@ -10,7 +11,8 @@ class Tendao{
         int pos;
 
     public:
-    Tendao(int pos, Servo servo_9);
+        Tendao(int pos, Servo servo_9);
+        movimentoServo();
 };
 
 

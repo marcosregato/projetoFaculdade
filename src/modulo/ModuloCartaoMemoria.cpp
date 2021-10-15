@@ -19,8 +19,8 @@ bool createFolder(String folder){
         }
 } 
 
-inline void writeCardMemory(String filePath){
-        if(filePath != ""){
+inline writeCardMemory(String filePath){
+        if(filePath != " "){
             //serial.
 
         }else{
