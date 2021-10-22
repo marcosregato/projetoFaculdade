@@ -32,7 +32,7 @@ boolean setup() {
 void escreverArquivo(){
     myFile = SD.open("usina.txt", FILE_WRITE);
 
-    if (myFile &&  ) { 
+    if (myFile) { 
         Log.notice("Escrevendo no Arquivo .txt");
         //Serial.println("Escrevendo no Arquivo .txt"); // Imprime na tela
         
@@ -49,7 +49,7 @@ void escreverArquivo(){
     else {     // Se o Arquivo não abrir
         Serial.println("Erro ao Abrir Arquivo .txt"); // Imprime na tela
     }
-    ~Tendao();
+    delete serial();
 }
 
 void lerArquivo(){
