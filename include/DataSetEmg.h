@@ -8,7 +8,7 @@ class DataSetEmg{
     public:
         void leitorCSV(std::string pathFile);
         bool escreverCSV(std::string pathFile);
-        void begin(HardwareSerial *serial);
+        
 
 };
 
