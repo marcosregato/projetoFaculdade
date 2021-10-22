@@ -1,78 +1,70 @@
-/*
-  SD card read/write
-
-  This example shows how to read and write data to and from an SD card file
-  The circuit:
-   SD card attached to SPI bus as follows:
- ** MOSI - pin 11
- ** MISO - pin 12
- ** CLK - pin 13
- ** CS - pin 4 (for MKRZero SD: SDCARD_SS_PIN)
-
-  created   Nov 2010
-  by David A. Mellis
-  modified 9 Apr 2012
-  by Tom Igoe
-
-  This example code is in the public domain.
-
-*/
-
-#include <SPI.h>
 #include <SD.h>
+#include <SPI.h>
+#include <ArduinoLog.h>
+#include <Tendao.h>
+#include <SerialArduino.h>
 
+SerialArduino serial;
+serial.begin(&serial);
 File myFile;
 
-void setup() {
-  // Open serial communications and wait for port to open:
-  Serial.begin(9600);
-  while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
-  }
+// pinMode = Pin 53 para Mega / Pin 10 para UNO
 
+DataSetEmg::DataSetEmg(int pinoSS){
+    pinMode(pinoSS, OUTPUT); // Declara pinoSS como saída
+    _pinoSS = pinoSS;
+}
 
-  Serial.print("Initializing SD card...");
+boolean setup() {
 
-  if (!SD.begin(4)) {
-    Serial.println("initialization failed!");
-    while (1);
-  }
-  Serial.println("initialization done.");
-
-  // open the file. note that only one file can be open at a time,
-  // so you have to close this one before opening another.
-  myFile = SD.open("test.txt", FILE_WRITE);
-
-  // if the file opened okay, write to it:
-  if (myFile) {
-    Serial.print("Writing to test.txt...");
-    myFile.println("testing 1, 2, 3.");
-    // close the file:
-    myFile.close();
-    Serial.println("done.");
-  } else {
-    // if the file didn't open, print an error:
-    Serial.println("error opening test.txt");
-  }
-
-  // re-open the file for reading:
-  myFile = SD.open("test.txt");
-  if (myFile) {
-    Serial.println("test.txt:");
-
-    // read from the file until there's nothing else in it:
-    while (myFile.available()) {
-      Serial.write(myFile.read());
+    Log.notice("Star method FULANO");
+ 
+    //serial.begin(&serial); // Define BaundRate
+    
+    if (SD.begin()) { // Inicializa o SD Card
+        Log.notice("SD Card pronto para uso");
+        return true; 
+    }else {
+        Log.notice("Falha na inicialização do SD Card");
+        return false;
     }
-    // close the file:
-    myFile.close();
-  } else {
-    // if the file didn't open, print an error:
-    Serial.println("error opening test.txt");
-  }
+}
+void escreverArquivo(){
+    myFile = SD.open("usina.txt", FILE_WRITE);
+
+    if (myFile &&  ) { 
+        Log.notice("Escrevendo no Arquivo .txt");
+        //Serial.println("Escrevendo no Arquivo .txt"); // Imprime na tela
+        
+        tendao = new Tendao();
+        myFile.println(tendao.movimentoServo()); // Escreve no Arquivo
+        
+        //Serial.println("Terminado."); // Imprime na tela
+        
+        //myFile.println("Usinainfo 1, 2 ,3 ..."); // Escreve no Arquivo
+        //myFile.close(); // Fecha o Arquivo após escrever
+        //Serial.println("Terminado."); // Imprime na tela
+        //Serial.println(" ");
+    }
+    else {     // Se o Arquivo não abrir
+        Serial.println("Erro ao Abrir Arquivo .txt"); // Imprime na tela
+    }
+    ~Tendao();
 }
 
-void loop() {
-  // nothing happens after setup
-}
+void lerArquivo(){
+    myFile = SD.open("usina.txt"); // Abre o Arquivo
 
+    if (myFile) {
+        serial.println("Conteúdo do Arquivo:"); // Imprime na tela
+
+        while (myFile.available()) { // Exibe o conteúdo do Arquivo
+        serial.write(myFile.read());
+        }
+
+        myFile.close(); // Fecha o Arquivo após ler
+    }else {
+        Log.errorln("Erro ao Abrir Arquivo .txt");
+        Serial.println("Erro ao Abrir Arquivo .txt"); // Imprime na tela
+    }
+}

@@ -13,7 +13,7 @@ Tendao::Tendao(Servo servo_9){
   servo_9.attach(9, 500, 2500);
 }*/
 
-void movimentoServo(int post){
+void Tendao::movimentoServo(int post){
     servo_9.attach(9);
     // varre o servo de 0 a 180 graus em etapas
     // de 1 grau 

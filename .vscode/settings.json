@@ -43,7 +43,12 @@
         "typeinfo": "cpp",
         "utility": "cpp",
         "valarray": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "associative_base": "cpp",
+        "deque": "cpp",
+        "map": "cpp",
+        "queue": "cpp",
+        "set": "cpp"
     },
     "cmake.sourceDirectory": "${workspaceFolder}/.pio/libdeps/arduino mega/ArduinoTrace"
 }
