@@ -3,68 +3,54 @@
 #include <ArduinoLog.h>
 #include <Tendao.h>
 #include <SerialArduino.h>
+#include "Config.h"
+
+Config config = new Config(); 
 
 SerialArduino serial;
-serial.begin(&serial);
+serial.begin(config.getSerial());
 File myFile;
 
 // pinMode = Pin 53 para Mega / Pin 10 para UNO
 
-DataSetEmg::DataSetEmg(int pinoSS){
-    pinMode(pinoSS, OUTPUT); // Declara pinoSS como saída
-    _pinoSS = pinoSS;
-}
 
-boolean setup() {
 
-    Log.notice("Star method FULANO");
- 
-    //serial.begin(&serial); // Define BaundRate
-    
-    if (SD.begin()) { // Inicializa o SD Card
-        Log.notice("SD Card pronto para uso");
-        return true; 
-    }else {
-        Log.notice("Falha na inicialização do SD Card");
-        return false;
-    }
-}
-void escreverArquivo(){
+void escreverArquivo(String pathFile){
     myFile = SD.open("usina.txt", FILE_WRITE);
-
-    if (myFile) { 
+    if (myFile & SD.begin()) { 
         Log.notice("Escrevendo no Arquivo .txt");
-        //Serial.println("Escrevendo no Arquivo .txt"); // Imprime na tela
-        
-        tendao = new Tendao();
-        myFile.println(tendao.movimentoServo()); // Escreve no Arquivo
-        
-        //Serial.println("Terminado."); // Imprime na tela
-        
-        //myFile.println("Usinainfo 1, 2 ,3 ..."); // Escreve no Arquivo
-        //myFile.close(); // Fecha o Arquivo após escrever
-        //Serial.println("Terminado."); // Imprime na tela
-        //Serial.println(" ");
+        Tendao tendao = new Tendao();
+        myFile.println(tendao.movimentoServo(int post));
+    }else {
+        Serial.println("Erro ao Abrir Arquivo .txt");
     }
-    else {     // Se o Arquivo não abrir
-        Serial.println("Erro ao Abrir Arquivo .txt"); // Imprime na tela
-    }
-    delete serial();
+    //delete serial();
 }
 
 void lerArquivo(){
-    myFile = SD.open("usina.txt"); // Abre o Arquivo
+    myFile = SD.open("usina.txt");
 
-    if (myFile) {
-        serial.println("Conteúdo do Arquivo:"); // Imprime na tela
-
-        while (myFile.available()) { // Exibe o conteúdo do Arquivo
-        serial.write(myFile.read());
+    if (myFile & SD.begin()) {
+        serial.println("Conteúdo do Arquivo:");
+        while (myFile.available()) {
+            serial.write(myFile.read());
         }
-
-        myFile.close(); // Fecha o Arquivo após ler
+        myFile.close();
     }else {
-        Log.errorln("Erro ao Abrir Arquivo .txt");
-        Serial.println("Erro ao Abrir Arquivo .txt"); // Imprime na tela
+        Log.errorln("Erro na leitura do Arquivo .txt");
     }
 }
+
+void setPino(String s){
+    String pino = s;
+}
+
+String getPino(){
+    return pino;
+}
+
+
+//String getUltimoArquivo(){
+
+
+//}

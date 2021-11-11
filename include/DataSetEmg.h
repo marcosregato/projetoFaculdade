@@ -6,9 +6,8 @@
 class DataSetEmg{
 
     public:
-        void leitorCSV(std::string pathFile);
-        bool escreverCSV(std::string pathFile);
-        
+        void leitorCSV(String pathFile);
+        bool escreverCSV(String pathFile);
 
 };
 

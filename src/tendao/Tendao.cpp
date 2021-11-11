@@ -2,49 +2,22 @@
 #include <Servo.h>
 #include "Tendao.h"
 
-Servo servo_9;
+Servo servo;
 int pos;
 // construtor
-Tendao::Tendao(Servo servo_9){
-    this->servo_9 = servo_9;
-}
+//Tendao::Tendao(Servo servo_9){
+//    this->servo_9 = servo_9;
+//}
 
-/*void setup(){
-  servo_9.attach(9, 500, 2500);
-}*/
-
-void Tendao::movimentoServo(int post){
-    servo_9.attach(9);
-    // varre o servo de 0 a 180 graus em etapas
-    // de 1 grau 
+void movimentoServo(int post){
+    servo.attach(9); 
   for (pos = 0; pos <= 180; pos += 1) {
-    // diga ao servo para ir para a posição na variável 'pos' 
-    servo_9.write(pos);
-    // espera 15 ms para o servo alcançar a posição
-    delay(15); // Aguarde 15 milissegundos (s) 
+    servo.write(pos);
+    delay(15); 
   }
   for (pos = 180; pos >= 0; pos -= 1) {
-    // tell servo to go to position in variable 'pos'
-    servo_9.write(pos);
-    // wait 15 ms for servo to reach the position
-    delay(15); // Aguarde 15 milissegundos (s) 
+    servo.write(pos);
+    delay(15); 
     
   }
 }
-
-/*
-Servo myservo;                              
-
-void setup() {
-  myservo.attach(9);
-}
-
-void loop() {
-  myservo.write(170);
-  delay(500);
-  myservo.write(0);
-  delay(500);
-}
-
-
-*/

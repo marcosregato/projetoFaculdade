@@ -7,12 +7,12 @@
 class Tendao{
 
     private:
-        Servo servo_9;
+        Server servo_9;
         int pos;
 
     public:
-        Tendao(int pos, Servo servo_9);
-        movimentoServo();
-};
+        Tendao(int pos, Server servo_9);
+        movimentoServo(int post);
+}
 
 #endif

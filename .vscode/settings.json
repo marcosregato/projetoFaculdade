@@ -48,7 +48,10 @@
         "deque": "cpp",
         "map": "cpp",
         "queue": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "numeric": "cpp",
+        "stack": "cpp",
+        "stdexcept": "cpp"
     },
     "cmake.sourceDirectory": "${workspaceFolder}/.pio/libdeps/arduino mega/ArduinoTrace"
 }

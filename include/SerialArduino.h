@@ -12,6 +12,8 @@ class SerialArduino{
     
     private:
         HardwareSerial *_serial;
-}
+};
 
-#endif SERIALARDUINO_H
+
+
+#endif //SERIALARDUINO_H
